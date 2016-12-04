@@ -1,0 +1,10 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "inventory of all the things!",
+  "author": "Carlos",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install express"
+  }
+}
