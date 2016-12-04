@@ -1,6 +1,6 @@
-# my-project
+# Inventory
 
-> A Vue.js project
+> An inventory for all the things to become familiar with VUE
 
 ## Build Setup
 
