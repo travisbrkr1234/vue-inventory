@@ -23,23 +23,46 @@ export default {
       msg: 'Inventory',
       itemName: '',
       items: [
-        {'id': 1, 'name': 'milk', 'qty': 1},
+        {'id': 1, 'name': 'cheese block', 'qty': 3},
         {'id': 2, 'name': 'eggs', 'qty': 16},
-        {'id': 3, 'name': 'cheese block', 'qty': 3}
+        {'id': 3, 'name': 'milk', 'qty': 1}
       ]
     }
   },
   methods: {
     addNewItem () {
+      var itemName = this.itemName.toLowerCase()
+      var foundItem = this.itemExists(itemName)
+
       if (this.itemName.length > 0 && this.items.length < 100) {
-        this.items.push({'id': this.items.length + 1, 'name': this.itemName, 'qty': 1})
-        this.itemName = ''
+        if (!foundItem) {
+          this.items.push({'id': this.items.length + 1, 'name': itemName, 'qty': 1})
+          this.itemName = ''
+        } else {
+          foundItem.qty++
+          this.itemName = ''
+        }
+        this.items.sort(this.compare)
       }
     },
     removeItem (item) {
       this.items = this.items.filter((copyOfItem) => {
         return copyOfItem.id !== item.id
       })
+    },
+    itemExists (val) {
+      return this.items.find(function (arrVal) {
+        return val === arrVal.name
+      })
+    },
+    compare (a, b) {
+      if (a.name < b.name) {
+        return -1
+      }
+      if (a.name > b.name) {
+        return 1
+      }
+      return 0
     }
   }
 }
